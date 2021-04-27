@@ -22,6 +22,7 @@ export class ContestService {
 				},
 				winnerId: { $ne: null },
 			};
+			// @ts-ignore
 			const contest: IContest[] = await Contest.find(filter).populate('winnerId');
 			return contest;
 		} catch (e) {
