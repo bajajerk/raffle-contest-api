@@ -8,7 +8,7 @@ export interface IRaffleTicket extends Document {
 
 const RaffleTicketSchema: Schema = new Schema({
   userId: { type: Schema.Types.ObjectId, required: true },
-  uniqueCode: { type: String, required: true },
+  uniqueCode: { type: String, required: true, unique: true },
 });
 
 export const RaffleTicket: Model<IRaffleTicket> = model(
