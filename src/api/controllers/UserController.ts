@@ -16,7 +16,7 @@ export class UserController {
 				return res.status(401).send({message: "User Not Found"});
 			}
 		} catch (e) {
-			return next(e);
+			return res.status(401).send({message: "An error occured", error: e});
 		}
 	};
 
@@ -31,8 +31,11 @@ export class UserController {
 			if(user){
 				res.send({...user.toObject(), token: user.generateAuthToken()})
 			}
+			else {
+				return res.status(401).send({message: "User Already Exists"});
+			}
 		} catch (e) {
-			return next(e);
+			return res.status(401).send({message: "An error occured", error: e});
 		}
 	};
 }
