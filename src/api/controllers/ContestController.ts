@@ -15,4 +15,18 @@ export class ContestController {
       return next(e);
     }
   };
+
+  fetchLastWeekWinners= async (
+		req: express.Request,
+		res: express.Response,
+		next: express.NextFunction,
+	) => {
+		try {
+			const {prize, endDate} = req.body;
+			const contest = await contestService.fetchWinnersOfLastWeek();
+			res.send(contest);
+		} catch (e) {
+			return next(e);
+		}
+	};
 }

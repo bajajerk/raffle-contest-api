@@ -12,4 +12,5 @@ module.exports = (app: express.Application) => {
 	app.post('/createTicket', auth, ticketController.createTicket);
   app.post('/createContest', contestController.createContest);
 	app.put('/participateContest', auth, ticketController.participate);
+	app.get('/lastWeekWinners', auth, contestController.fetchLastWeekWinners);
 };

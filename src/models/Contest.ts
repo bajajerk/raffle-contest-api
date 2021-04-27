@@ -10,7 +10,7 @@ export interface IContest extends Document {
 const ContestSchema: Schema = new Schema({
   prize: { type: String, enum: WinningPrize, required: true },
   endDate: { type: Date, required: true },
-  winnerId: { type: String || null, default: null },
+  winnerId: { type: String || null, default: null, ref: 'User' },
 });
 
 export const Contest: Model<IContest> = model('Contest', ContestSchema);
