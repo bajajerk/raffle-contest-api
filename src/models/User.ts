@@ -7,6 +7,7 @@ export interface IUser extends Document {
   email: string;
   firstName: string;
   lastName: string;
+	generateAuthToken: any;
 }
 
 const UserSchema: Schema = new Schema({
