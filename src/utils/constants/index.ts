@@ -3,4 +3,4 @@ export enum WinningPrize {
 	GOLD = 'GOLD',
 }
 
-export const userJWTPrivateKey = 'thisIsGrofersKey'
+export const userJWTPrivateKey = 'thisIsGrofersKey';
