@@ -17,9 +17,15 @@ export class TicketService {
 
 	redeemTicket = async (userId: string, ticketId: string, contestId: string) => {
 		try {
-			if(await this.isTicketValid(ticketId) && await this.userAlreadyParticipatedInContest(userId, contestId)){
-				await RaffleTicket.updateOne(
-					{ id: ticketId },
+			console.log('TRY');
+			const isTicketValid = await this.isTicketValid(ticketId);
+			const isUserAlreadyParticipated = await this.userAlreadyParticipatedInContest(userId, contestId);
+
+			console.log(isTicketValid, isUserAlreadyParticipated)
+			if (isTicketValid && !isUserAlreadyParticipated) {
+				console.log('VALIDATES');
+				const ticket = await RaffleTicket.findByIdAndUpdate(
+					ticketId,
 					{ redeemed: true },
 				);
 				const userContestMapping = await UserContestMapping.create(
@@ -39,8 +45,8 @@ export class TicketService {
 	};
 
 	userAlreadyParticipatedInContest = async (userId: string, contestId: string) => {
-		const mapping = await UserContestMapping.find({userId, contestId});
-		return mapping.length === 0;
-	}
+		const mapping = await UserContestMapping.find({ userId, contestId });
+		return mapping.length !== 0;
+	};
 }
 

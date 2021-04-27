@@ -10,6 +10,6 @@ module.exports = (app: express.Application) => {
 	app.post('/user/login', userController.loginUser);
 	app.post('/user/signup', userController.signUpUser);
 	app.post('/createTicket', auth, ticketController.createTicket);
-  app.get('/createContest', contestController.createContest);
-	app.put('/participateContest', ticketController.participate);
+  app.post('/createContest', contestController.createContest);
+	app.put('/participateContest', auth, ticketController.participate);
 };

@@ -21,9 +21,10 @@ export class TicketController {
 		next: express.NextFunction,
 	) => {
 		try {
-			const { userId, contestId, ticketId } = req.body;
-			const mapping = await ticketService.redeemTicket(userId, ticketId, contestId);
-			return mapping;
+			const { contestId, ticketId } = req.body;
+			const userId = req.body.user._id;
+			const mappingSuccess = await ticketService.redeemTicket(userId, ticketId, contestId);
+			res.send(mappingSuccess);
 		} catch (e) {
 			return next(e);
 		}

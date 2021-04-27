@@ -4,14 +4,14 @@ import { model, Schema, Model, Document } from 'mongoose';
 export interface IUserContestMappingSchema extends Document {
   userId: string;
   contestId: string;
-  tickerId: string;
+  ticketId: string;
   winningTicket: boolean;
 }
 
 const UserContestMappingSchema: Schema = new Schema({
   userId: { type: Schema.Types.ObjectId, required: true },
   contestId: { type: Schema.Types.ObjectId, required: true },
-  tickerId: { type: Schema.Types.ObjectId, required: true },
+	ticketId: { type: Schema.Types.ObjectId, required: true },
   winningTicket: { type: Boolean, default: false },
 });
 
