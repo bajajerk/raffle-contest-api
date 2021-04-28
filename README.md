@@ -4,11 +4,7 @@ Raffle-api is a REST-API built on node with typescript.
 
 These docs describe how to use the [Raffle](https://raffle-contest-api.herokuapp.com/) API.
 
-[comment]: <> (## Use Cases)
-
-[comment]: <> (There are many reasons to use the Gophish API. The most common use case is to gather report information for a given campaign, so that you can build custom reports in software you're most familiar with, such as Excel or Numbers.)
-
-[comment]: <> (However, automating the creation of campaigns and campaign attributes such as templates, landing pages, and more provides the ability to create a fully automated phishing simulation program. This would allow campaigns to be run throughout the year automatically. This also allows the Gophish administrator to be included in the campaigns, since they wouldn't know exactly which day it would start!)
+Postman collection in file:- Api.postman_collection.json
 
 ## Responses
 
@@ -19,16 +15,17 @@ However, if an invalid request is submitted, or some other error occurs, Raffle 
 ```javascript
 {
   "message" : string,
-  "success" : bool,
-  "data"    : string
+  "statusCode" : number,
+  "data"    : string,
+  "error": string
 }
 ```
 
 The `message` attribute contains a message commonly used to indicate errors or, in the case of deleting a resource, success that the resource was properly deleted.
 
-The `success` attribute describes if the transaction was successful or not.
-
 The `data` attribute contains any other metadata associated with the response. This will be an escaped string containing JSON data.
+
+The `error` attribute contains error trace.
 
 ## Status Codes
 

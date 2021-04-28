@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "c807bdc3-b098-4aa1-b4d3-b41d667e2f8d",
+		"name": "Raffle Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"email\": \"mayankbajaj30@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5000/api/user/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Signup User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"amitarya@gmail.com\",\n    \"firstName\": \"Amit\",\n    \"lastName\": \"Arya\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5000/user/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "Create ticket",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4NWU3MGU4NGI5YWFkNTcyY2VmYWYiLCJpYXQiOjE2MTk1NDk4MDh9.EtguejoH5gbkyV6GAF2r_hvL6rjraDcbKJqrg-ciecM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"mayankbajaj30@gmail.com\",\n    \"firstName\": \"Mayank\",\n    \"lastName\": \"Bajaj\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5000/api/ticket"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Contest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prize\": \"CAR\",\n    \"endDate\": \"2022-04-22T18:30:00.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5000/createContest"
+			},
+			"response": []
+		},
+		{
+			"name": "Participate in contest",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4NWU3MGU4NGI5YWFkNTcyY2VmYWYiLCJpYXQiOjE2MTk1NDk4MDh9.EtguejoH5gbkyV6GAF2r_hvL6rjraDcbKJqrg-ciecM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"contestId\": \"608951fba1e5e5c5b2a48cf0\",\n    \"ticketId\": \"60895294ef4bbfc60f4e3074\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5000/api/contest/participate"
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Last week winners",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4Mzc1ZTE3YTM2ZmE0ZDQ4ZDQyMjAiLCJpYXQiOjE2MTk1Mzk4MDZ9.1r-GetcO2haZmW_xqqDLjaqHzv3vz5-m_Yz182vbdOs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5000/api/contest/lastWeekWinners"
+			},
+			"response": []
+		},
+		{
+			"name": "Declare Winner Randomly",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4Mzc1ZTE3YTM2ZmE0ZDQ4ZDQyMjAiLCJpYXQiOjE2MTk1Mzk4MDZ9.1r-GetcO2haZmW_xqqDLjaqHzv3vz5-m_Yz182vbdOs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5000/declareWinnerRandomly"
+			},
+			"response": []
+		}
+	]
+}
