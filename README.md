@@ -5,6 +5,7 @@ Raffle-api is a REST-API built on node with typescript.
 These docs describe how to use the [Raffle](https://raffle-contest-api.herokuapp.com/) API.
 
 Postman collection in file:- Api.postman_collection.json
+Deployed URL:- https://raffle-contest-api.herokuapp.com
 
 ## Responses
 
