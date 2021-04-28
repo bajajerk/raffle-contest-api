@@ -15,5 +15,5 @@ module.exports = (app: express.Application) => {
 	app.post('/api/contest', contestController.createContest);
 	app.put('/api/contest/participate', auth, ticketController.participate);
 	app.get('/api/contest/lastWeekWinners', auth, contestController.fetchLastWeekWinners);
-	app.get('/api/declareWinnerRandomly', contestController.declareWinnerRandomly);
+	app.put('/api/contest/declareWinnerRandomly', contestController.declareWinnerRandomly);
 };

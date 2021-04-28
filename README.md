@@ -46,7 +46,6 @@ Raffle returns the following status codes in its API:
 ## Authorization(Login/Signup User)
 
 ## Login
-To authenticate an API request, you should provide your API key in the `auth_token` header.
 
 
 ```http
@@ -124,7 +123,7 @@ Response
 
 ## Get a new ticket, internal use
 
-Get a new ticket for interanal apis
+Get a new ticket for internal apis
 ```http
 POST /api/ticket/internal
 ```
@@ -157,7 +156,8 @@ Body
 | Param | Type | Description |
 | :--- | :--- | :--- |
 | `prize` | `string` | **Required**. Prize Name  |
-| `endDate` | `DateString` | **Required**. End Date of contest first name  |
+| `endDate` | `DateString` | **Required**. End Date of contest |
+
 Response
 
 ```javascript
@@ -173,7 +173,7 @@ Response
 ## Participate in a Contest
 
 ```http
-PUT /api/contest/participate
+PUT /api/contest/participate (Need auth-token)
 ```
 
 Body
@@ -182,6 +182,7 @@ Body
 | :--- | :--- | :--- |
 | `contestId` | `string` | **Required**. id of contest to participate in   |
 | `ticketId` | `string` | **Required**. id of ticket to use  |
+
 Response
 
 Code 200, if successfully enrolled
@@ -221,3 +222,21 @@ Response
 	}
 ]
 ```
+
+
+## Declare Winner
+
+```http
+GET /api/contest/declareWinnerRandomly
+```
+
+
+Body
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| `contestId` | `string` | **Required**. id of contest to declare winner in   |
+
+Response
+
+200, with winnerId, If successfully declared. Future scope- cron job for the same

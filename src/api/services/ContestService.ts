@@ -3,6 +3,7 @@ import moment from 'moment';
 import { WinningPrize } from '../../utils/constants';
 import { Contest, IContest } from '../../models/Contest';
 import { UserContestMapping } from '../../models/UserContestMapping';
+import { renameKey } from '../../utils/objectManipulators';
 
 export class ContestService {
 	createContest = async (prize: WinningPrize, endDate: Date) => {
@@ -23,9 +24,12 @@ export class ContestService {
 				winnerId: { $ne: null },
 			};
 			// @ts-ignore
-			const contest: IContest[] = await Contest.find(filter).populate('winnerId');
-			return contest;
+			const contestWithJoin: IContest[] = await Contest.find(filter).populate('winnerId' as 'winner');
+			return contestWithJoin.map(c => {
+				return renameKey(c.toObject(), 'winnerId', 'winner');
+			});
 		} catch (e) {
+			console.log(e)
 			throw e;
 		}
 	};
