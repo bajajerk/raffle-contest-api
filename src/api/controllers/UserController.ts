@@ -1,4 +1,5 @@
 import express from 'express';
+
 import { userService } from '../services';
 import { createResponse } from '../../utils/response';
 
@@ -6,7 +7,6 @@ export class UserController {
 	loginUser = async (
 		req: express.Request,
 		res: express.Response,
-		next: express.NextFunction,
 	) => {
 		try {
 			const user = await userService.loginUser(req.body.email);
@@ -26,7 +26,6 @@ export class UserController {
 	signUpUser = async (
 		req: express.Request,
 		res: express.Response,
-		next: express.NextFunction,
 	) => {
 		try {
 			const {email, lastName, firstName} = req.body;

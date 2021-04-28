@@ -107,7 +107,7 @@ Some API requests require the use of a generated authentication token. You can c
 To register for a new user
 
 ```http
-GET /api/createTicket
+POST /api/ticket
 ```
 
 Response
@@ -123,9 +123,8 @@ Response
 
 #Create a new Contest
 
-
 ```http
-GET /api/createContest
+POST /api/contest
 ```
 
 Body
@@ -146,4 +145,54 @@ Response
 ```
 
 
+#Participate in a Contest
 
+```http
+PUT /api/contest/participate
+```
+
+Body
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| `contestId` | `string` | **Required**. id of contest to participate in   |
+| `ticketId` | `string` | **Required**. id of ticket to use  |
+Response
+
+Code 200, if successfully enrolled
+
+
+#Get last week winners
+
+```http
+GET /api/contest/lastWeekWinners
+```
+
+Response
+
+```javascript
+[
+	{
+		"winner": {
+			"_id": "6088375e17a36fa4d48d4220",
+			"email": "mayankbajaj30@gmail.com",
+			"firstName": "Mayank",
+			"lastName": "Bajaj",
+			"__v": 0
+		},
+		"prize": "GOLD",
+		"endDate": "2021-04-23T18:30:00.000Z",
+	},
+	{
+		"winner": {
+			"_id": "60885e70e84b9aad572cefaf",
+			"email": "sam@gmail.com",
+			"firstName": "Sam",
+			"lastName": "Curran",
+		},
+		"_id": "608864b2a5a0ecae01748085",
+		"prize": "CAR",
+		"endDate": "2021-04-22T18:30:00.000Z",
+	}
+]
+```

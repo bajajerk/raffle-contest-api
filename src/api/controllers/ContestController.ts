@@ -1,44 +1,46 @@
 import express from 'express';
+
 import { contestService } from '../services';
+import { createResponse } from '../../utils/response';
 
 export class ContestController {
 	createContest = async (
 		req: express.Request,
 		res: express.Response,
-		next: express.NextFunction,
 	) => {
 		try {
 			const { prize, endDate } = req.body;
 			const contest = await contestService.createContest(prize, new Date(endDate));
-			res.send(contest);
+			const apiResponse = createResponse(contest, 200);
+			return res.send(apiResponse);
 		} catch (e) {
-			return next(e);
+			return res.send(createResponse(false, 400, e));
 		}
 	};
 
 	fetchLastWeekWinners = async (
 		req: express.Request,
 		res: express.Response,
-		next: express.NextFunction,
 	) => {
 		try {
 			const contest = await contestService.fetchWinnersOfLastWeek();
-			res.send(contest);
+			const apiResponse = createResponse(contest, 200);
+			return res.send(apiResponse);
 		} catch (e) {
-			return next(e);
+			return res.send(createResponse(false, 400, e));
 		}
 	};
 
 	declareWinnerRandomly = async (
 		req: express.Request,
 		res: express.Response,
-		next: express.NextFunction,
 	) => {
 		try {
 			const contest = await contestService.declareWinnerRandomly(req.body.contestId);
-			res.send(contest);
+			const apiResponse = createResponse(contest, 200);
+			return res.send(apiResponse);
 		} catch (e) {
-			return next(e);
+			return res.send(createResponse(false, 400, e));
 		}
 	};
 }
