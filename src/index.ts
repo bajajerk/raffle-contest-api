@@ -2,15 +2,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import schedule from 'node-schedule';
 
 const app = express();
 const Router = express.Router();
 
-const dbString =
-	'mongodb+srv://dbUser:dbUser@raffledb.qdmtp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+mongoose.connect(process.env.DB_URL || 'mongodb://localhost:27017/myapp');
 
-mongoose.connect(dbString);
 mongoose.connection.on('connected', (err, conn) => {
 	console.log('Mongo DB Connected');
 });
