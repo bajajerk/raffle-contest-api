@@ -1,5 +1,6 @@
 import { IRaffleTicket, RaffleTicket } from '../../models/RaffleTicket';
 import { UserContestMapping } from '../../models/UserContestMapping';
+import { contestService } from './index';
 
 
 export class TicketService {
@@ -17,13 +18,11 @@ export class TicketService {
 
 	redeemTicket = async (userId: string, ticketId: string, contestId: string) => {
 		try {
-			console.log('TRY');
 			const isTicketValid = await this.isTicketValid(ticketId);
 			const isUserAlreadyParticipated = await this.userAlreadyParticipatedInContest(userId, contestId);
+			const isContestActive = contestService.isContestActive(contestId);
 
-			console.log(isTicketValid, isUserAlreadyParticipated)
-			if (isTicketValid && !isUserAlreadyParticipated) {
-				console.log('VALIDATES');
+			if (isTicketValid && !isUserAlreadyParticipated && isContestActive) {
 				const ticket = await RaffleTicket.findByIdAndUpdate(
 					ticketId,
 					{ redeemed: true },

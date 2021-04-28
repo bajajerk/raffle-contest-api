@@ -33,10 +33,13 @@ export class ContestService {
 	declareWinnerRandomly = async (contestId: string) => {
 		try {
 			const fetchWinnerIfDeclared = await this.getWinnerForContest(contestId);
-			if(fetchWinnerIfDeclared){
+			if (fetchWinnerIfDeclared) {
 				return fetchWinnerIfDeclared;
 			}
 			const usersParticipatingInContest: any[] = await UserContestMapping.find({ contestId }, { userId: 1, _id: 0 });
+			if (usersParticipatingInContest.length === 0) {
+				return null;
+			}
 			const winnerUserId = usersParticipatingInContest[Math.floor(Math.random() * (usersParticipatingInContest.length))].userId;
 			await Contest.findByIdAndUpdate(contestId, { winnerId: winnerUserId });
 			return winnerUserId;
@@ -57,4 +60,12 @@ export class ContestService {
 		}
 	};
 
+	isContestActive = async (contestId: string) => {
+		try {
+			const contest: IContest | null = await Contest.findById(contestId);
+			return contest && contest.endDate.getTime() > new Date().getTime() * 1000;
+		} catch (e) {
+			throw e;
+		}
+	};
 }

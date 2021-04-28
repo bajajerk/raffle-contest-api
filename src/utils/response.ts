@@ -15,7 +15,7 @@ export const createResponse =
 				message = 'created';
 				break;
 			case 400:
-				message = 'bad request';
+				message = 'Bad Request';
 				break;
 			case 401:
 				message = 'unauthorized';

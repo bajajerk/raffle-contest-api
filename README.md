@@ -2,7 +2,7 @@
 
 Raffle-api is a REST-API built on node with typescript.
 
-These docs describe how to use the [Raffle](https://getgophish.com) API. We hope you enjoy these docs, and please don't hesitate to [file an issue](https://github.com/gophish/gophish/issues/new) if you see anything missing.
+These docs describe how to use the [Raffle](https://raffle-contest-api.herokuapp.com/) API.
 
 [comment]: <> (## Use Cases)
 
@@ -12,7 +12,9 @@ These docs describe how to use the [Raffle](https://getgophish.com) API. We hope
 
 ## Responses
 
-Many API endpoints return the JSON representation of the resources created or edited. However, if an invalid request is submitted, or some other error occurs, Raffle returns a JSON response in the following format:
+Many API endpoints return the JSON representation of the resources created or edited.
+
+However, if an invalid request is submitted, or some other error occurs, Raffle returns a JSON response in the following format:
 
 ```javascript
 {
@@ -43,7 +45,7 @@ Raffle returns the following status codes in its API:
 
 ## Authorization(Login/Signup User)
 
-#Login
+## Login
 To authenticate an API request, you should provide your API key in the `auth_token` header.
 
 
@@ -69,7 +71,7 @@ Body
 }
 ```
 
-#Signup
+## Signup
 
 To register for a new user
 
@@ -102,12 +104,11 @@ Some API requests require the use of a generated authentication token. You can c
 ```
 
 
-#Get a new ticket
+## Get a new ticket
 
-To register for a new user
-
+Get a new ticket
 ```http
-POST /api/ticket
+POST /api/ticket (Need auth-token)
 ```
 
 Response
@@ -121,7 +122,31 @@ Response
 }
 ```
 
-#Create a new Contest
+## Get a new ticket, internal use
+
+Get a new ticket for interanal apis
+```http
+POST /api/ticket/internal
+```
+
+Body
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| `userId` | `string` | **Required**.  |
+
+Response
+
+```javascript
+{
+	"redeemed": false,
+	"_id": "60894c04cad47bc43cc360fd",
+	"userId": "60885e70e84b9aad572cefaf",
+	"uniqueCode": "ko1ecms4",
+}
+```
+
+## Create a new Contest
 
 ```http
 POST /api/contest
@@ -131,7 +156,7 @@ Body
 
 | Param | Type | Description |
 | :--- | :--- | :--- |
-| `prize` | `string` | **Required**. prize  |
+| `prize` | `string` | **Required**. Prize Name  |
 | `endDate` | `DateString` | **Required**. End Date of contest first name  |
 Response
 
@@ -145,7 +170,7 @@ Response
 ```
 
 
-#Participate in a Contest
+## Participate in a Contest
 
 ```http
 PUT /api/contest/participate
@@ -162,7 +187,7 @@ Response
 Code 200, if successfully enrolled
 
 
-#Get last week winners
+## Get last week winners
 
 ```http
 GET /api/contest/lastWeekWinners
